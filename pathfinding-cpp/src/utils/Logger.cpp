@@ -2,7 +2,6 @@
 
 
 
-
 void Logger::DEBUG(const std::string& message) {
 	std::cout << "[DEBUG] " << message << std::endl;
 }

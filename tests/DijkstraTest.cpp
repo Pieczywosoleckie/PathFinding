@@ -62,8 +62,9 @@ void testDijkstra(Data* ptr) {
 
 	Position start(0, 0);
 	Position end(0, 0);
-
 	Grid* grid = nullptr;
+
+	Logger log;
 
 	if (ptr != nullptr) {
 		grid = ptr->ptr;
@@ -84,11 +85,16 @@ void testDijkstra(Data* ptr) {
 
 
 	Dijkstra test;
+	Timer time;
 
 	auto path = test.findPath(*grid, start, end);
 
+	time.stopTimer();
+
+	std::cout << std::fixed << std::setprecision(16)
+		<< "Dijkstra took: " << time.getTime() << " seconds" << std::endl;
+
 	if (!path.empty() && path.back()->pos == end && path.front()->pos == start) {
-		Logger log;
 		log.INFO("Found path : ");
 
 		for (auto spot : path) {
@@ -101,6 +107,7 @@ void testDijkstra(Data* ptr) {
 
 int main() {
 
+	
 	std::vector<std::vector<char>> map = {
 		{ 'S', '.', '.', '.', '#', '.', '.' },
 		{ '.', '#', '.', '.', '#', '.', '.' },
