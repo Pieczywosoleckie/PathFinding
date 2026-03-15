@@ -1,5 +1,5 @@
 #pragma once
-#include <Position.hpp>
+#include <core/Position.hpp>
 
 struct Node
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <Node.hpp>
+#include <core/Node.hpp>
 
 class Grid
 {

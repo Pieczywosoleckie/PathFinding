@@ -1,8 +1,8 @@
 #pragma once 
 #include <vector>
-#include <Grid.hpp>
-#include <Logger.hpp>
-#include <Timer.hpp>
+#include <core/Grid.hpp>
+#include <utils/Logger.hpp>
+#include <utils/Timer.hpp>
 
 class PathFinder {
 public:
