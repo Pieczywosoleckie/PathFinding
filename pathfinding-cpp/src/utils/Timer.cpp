@@ -1,4 +1,4 @@
-#include <Timer.hpp>
+#include <utils/Timer.hpp>
 
 Timer::Timer() {
 	start = std::clock();

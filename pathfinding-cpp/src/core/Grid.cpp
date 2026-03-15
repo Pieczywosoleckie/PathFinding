@@ -1,4 +1,4 @@
-#include <Grid.hpp>
+#include <Core/Grid.hpp>
 
 
 Grid::Grid(int w, int h)
