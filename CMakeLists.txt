@@ -45,6 +45,11 @@ target_link_libraries(pathfinding_app
     PRIVATE pathfinding
 )
 
+add_custom_command(TARGET pathfinding_app POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${PROJECT_SOURCE_DIR}/map.txt
+        $<TARGET_FILE_DIR:pathfinding_app>
+)
 
 enable_testing()
 
@@ -63,6 +68,12 @@ if(TEST_SOURCES)
 
     target_include_directories(pathfinding_tests
         PRIVATE ${PROJECT_SOURCE_DIR}/pathfinding-cpp/include
+    )
+
+    add_custom_command(TARGET pathfinding_tests POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${PROJECT_SOURCE_DIR}/map.txt
+            $<TARGET_FILE_DIR:pathfinding_tests>
     )
 
     add_test(

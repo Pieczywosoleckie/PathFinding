@@ -20,7 +20,7 @@ typedef struct Data {
 	}
 };
 
-void testDijkstra(Data* ptr) {
+void testDijkstra(Data* ptr, bool output) {
 
 	Position start(0, 0);
 	Position end(0, 0);
@@ -56,13 +56,17 @@ void testDijkstra(Data* ptr) {
 	std::cout << std::fixed << std::setprecision(16)
 		<< "Dijkstra took: " << time.getTime() << " seconds" << std::endl;
 
-	if (!path.empty() && path.back()->pos == end && path.front()->pos == start) {
+	if (!path.empty() && path.back()->pos == end && path.front()->pos == start && output) {
 		log.INFO("Found path : ");
 
 		for (auto spot : path) {
 			log.INFO(("(" + std::to_string(spot->pos.x) + "," + std::to_string(spot->pos.y) + ")"));
 		}
-
 	}
+	else if (path.empty()) {
+		log.INFO("No possible route");
+	}
+
+	
 
 }

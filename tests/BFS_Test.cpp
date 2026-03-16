@@ -21,7 +21,7 @@ typedef struct Data {
 };
 
 
-void testBFS(Data* ptr) {
+void testBFS(Data* ptr, bool output) {
 
 	Position start(0, 0);
 	Position end(0, 0);
@@ -57,7 +57,7 @@ void testBFS(Data* ptr) {
 	std::cout << std::fixed << std::setprecision(16)
 		<< "BFS took: " << time.getTime() << " seconds" << std::endl;
 
-	if (!path.empty() && path.back()->pos == end && path.front()->pos == start) {
+	if (!path.empty() && path.back()->pos == end && path.front()->pos == start && output) {
 		log.INFO("Found path : ");
 
 		for (auto spot : path) {
@@ -65,5 +65,7 @@ void testBFS(Data* ptr) {
 		}
 
 	}
-
+	else if (path.empty()) {
+		log.INFO("No possible route");
+	}
 }
