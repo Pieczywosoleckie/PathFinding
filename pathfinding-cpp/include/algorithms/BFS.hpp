@@ -2,10 +2,11 @@
 
 #include <algorithms/Base.hpp>
 #include <vector>
+#include <memory>
 
-class BFS {
+class BFS : public PathFinder {
 
 public:
-	std::vector<BFSNode*> findPath(Grid& grid, const Position& start, const Position& end);
+	std::vector<Node*> findPath(Grid& grid, const Position& start, const Position& end) override;
 
 };

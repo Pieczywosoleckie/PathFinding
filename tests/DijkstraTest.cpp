@@ -7,6 +7,8 @@
 
 #include <fstream>
 #include <filesystem>
+#include <memory>
+
 
 typedef struct Data {
 	Grid* ptr;
@@ -16,47 +18,7 @@ typedef struct Data {
 	Data(Grid* ptr, Position start, Position end) :ptr(ptr), start(start), end(end) {
 
 	}
-
 };
-
-Data* LoadFromVector(std::vector<std::vector<char>> data) {
-
-	if (data.empty()) return nullptr;
-
-	int lenght = data.at(0).size();
-
-	for (auto y : data) {
-		if (lenght != y.size()) {
-			return nullptr;
-		}
-	}
-
-	Grid* ptr = new Grid(data.size(), lenght);
-	Position start(-1,-1);
-	Position end(-1,-1);
-
-	for (int y = 0; y < data.size(); ++y) {
-		for (int x = 0; x < lenght; ++ x) {
-			if (data.at(y).at(x) == '#') {
-				ptr->getNode(x, y).walkable = false;
-			}
-			else if (data.at(y).at(x) == 'S') {
-				start.x = x;
-				start.y = y;
-			}
-			else if (data.at(y).at(x) == 'E') {
-				end.x = x;
-				end.y = y;
-			}
-		}
-	}
-
-	if (start.x == -1 || end.x == -1) {
-		return nullptr;
-	}
-
-	return new Data(ptr, start, end);
-}
 
 void testDijkstra(Data* ptr) {
 
@@ -103,23 +65,4 @@ void testDijkstra(Data* ptr) {
 
 	}
 
-}
-
-int main() {
-
-	
-	std::vector<std::vector<char>> map = {
-		{ 'S', '.', '.', '.', '#', '.', '.' },
-		{ '.', '#', '.', '.', '#', '.', '.' },
-		{ '.', '#', '.', '#', '#', '.', '.' },
-		{ '.', '#', '.', '.', '.', '.', '.' },
-		{ '.', '.', '#', '#', '#', '.', '.' },
-		{ '.', '.', '.', '.', '#', '.', '.' },
-		{ '.', '.', '.', '.', '#', '.', 'E' }
-	};
-
-	testDijkstra(LoadFromVector(map));
-
-	std::cout << "Test completed! " << std::endl;
-	return 0;
 }

@@ -49,7 +49,7 @@ target_link_libraries(pathfinding_app
 enable_testing()
 
 file(GLOB TEST_SOURCES
-    tests/*.cpp
+    ${PROJECT_SOURCE_DIR}/tests/*.cpp
 )
 
 if(TEST_SOURCES)
@@ -59,6 +59,10 @@ if(TEST_SOURCES)
 
     target_link_libraries(pathfinding_tests
         PRIVATE pathfinding
+    )
+
+    target_include_directories(pathfinding_tests
+        PRIVATE ${PROJECT_SOURCE_DIR}/pathfinding-cpp/include
     )
 
     add_test(
